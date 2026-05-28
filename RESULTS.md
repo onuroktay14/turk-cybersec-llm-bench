@@ -1,9 +1,10 @@
 # Benchmark Results
 
+**Tested by Onur OKTAY - Senior Cyber Security Expert**
 **Run date:** 2026-05-28
 **Hardware:** NVIDIA Tesla V100-SXM2-32GB
 **Runtime:** Ollama 0.20.4
-**Prompt:** `prompts/triage_v1_tr.md` — generic Turkish SOC triage, identical for every model
+**Prompt:** `prompts/triage_v1_tr.md` generic Turkish SOC triage, identical for every model
 **Sampling:** temperature 0.0, num_ctx 8192, sequential model unload
 **Dataset:** 5 labeled SOC alerts (`alerts/*.json`); ground truth in each file's `expected_verdict`
 
