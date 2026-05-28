@@ -1,4 +1,4 @@
-# cybersec-llm-bench
+# Turk-cybersec-llm-bench
 
 > Head-to-head benchmark for cybersecurity LLMs on SOC alerts, via Ollama.
 
