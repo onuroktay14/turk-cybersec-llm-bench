@@ -1,6 +1,5 @@
 # Benchmark Results
 
-**Tested by Onur OKTAY - Senior Cyber Security Expert**
 **Run date:** 2026-05-28
 **Hardware:** NVIDIA Tesla V100-SXM2-32GB
 **Runtime:** Ollama 0.20.4
