@@ -1,0 +1,40 @@
+{
+  "alert_id": "evt-2026-0004",
+  "timestamp": "2026-05-27T11:09:55Z",
+  "source": "ad-audit",
+  "expected_verdict": "TP",
+  "expected_confidence": "HIGH",
+  "expected_techniques": ["T1558.003"],
+  "rule": {
+    "id": "ad-4769-burst",
+    "name": "Burst of service ticket requests with RC4 encryption from single user",
+    "level": 11,
+    "mitre": ["T1558.003"]
+  },
+  "agent": {
+    "id": "dc01",
+    "name": "DC01",
+    "ip": "10.20.0.10",
+    "os": "Windows Server 2022"
+  },
+  "domain": "corp.example.local",
+  "actor": {
+    "user": "CORP\\j.demir",
+    "logon_id": "0x3a12bcd",
+    "source_workstation": "WS-DEV-19",
+    "source_ip": "10.20.40.119"
+  },
+  "tickets_requested": [
+    {"service": "MSSQLSvc/sql-prod-01.corp.example.local:1433", "encryption": "RC4-HMAC", "ts": "2026-05-27T11:09:41Z"},
+    {"service": "MSSQLSvc/sql-prod-02.corp.example.local:1433", "encryption": "RC4-HMAC", "ts": "2026-05-27T11:09:43Z"},
+    {"service": "HTTP/jenkins.corp.example.local",              "encryption": "RC4-HMAC", "ts": "2026-05-27T11:09:46Z"},
+    {"service": "HTTP/gitlab.corp.example.local",               "encryption": "RC4-HMAC", "ts": "2026-05-27T11:09:48Z"},
+    {"service": "MSSQLSvc/sql-bi.corp.example.local:1433",      "encryption": "RC4-HMAC", "ts": "2026-05-27T11:09:52Z"}
+  ],
+  "user_baseline": {
+    "role": "frontend_developer",
+    "typical_service_tickets_per_day": 2,
+    "first_admin_db_ticket_ever": true
+  },
+  "raw_log": "EventID=4769 ServiceName=MSSQLSvc/... TicketEncryptionType=0x17 (RC4) ClientAddress=::ffff:10.20.40.119"
+}

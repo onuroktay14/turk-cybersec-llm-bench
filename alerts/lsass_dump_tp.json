@@ -1,0 +1,40 @@
+{
+  "alert_id": "evt-2026-0001",
+  "timestamp": "2026-05-27T14:32:11Z",
+  "source": "wazuh",
+  "expected_verdict": "TP",
+  "expected_confidence": "HIGH",
+  "expected_techniques": ["T1003.001"],
+  "rule": {
+    "id": 92034,
+    "name": "Suspicious process access to LSASS memory",
+    "level": 12,
+    "mitre": ["T1003.001"]
+  },
+  "agent": {
+    "id": "017",
+    "name": "WS-FIN-04",
+    "ip": "10.20.30.45",
+    "os": "Windows 10 21H2"
+  },
+  "process": {
+    "name": "rundll32.exe",
+    "pid": 4216,
+    "cmdline": "rundll32.exe C:\\Users\\Public\\comsvcs.dll, MiniDump 716 C:\\Users\\Public\\out.dmp full",
+    "parent_name": "explorer.exe",
+    "parent_pid": 3128,
+    "user": "DOMAIN\\jsmith",
+    "integrity_level": "Medium",
+    "signature_status": "Valid (Microsoft)"
+  },
+  "target": {
+    "name": "lsass.exe",
+    "pid": 716,
+    "access_mask": "0x1410",
+    "granted_access_decoded": ["PROCESS_QUERY_LIMITED_INFORMATION", "PROCESS_VM_READ"]
+  },
+  "file_artifacts": [
+    {"path": "C:\\Users\\Public\\out.dmp", "size_bytes": 47185920, "created": "2026-05-27T14:32:09Z"}
+  ],
+  "raw_log": "Microsoft-Windows-Sysmon/Operational EventID=10 SourceProcessName=rundll32.exe TargetImage=C:\\Windows\\System32\\lsass.exe GrantedAccess=0x1410 CallTrace=C:\\Windows\\SYSTEM32\\ntdll.dll+9d2e4|C:\\Windows\\System32\\KERNELBASE.dll+2c4ee|C:\\Users\\Public\\comsvcs.dll+1a380"
+}

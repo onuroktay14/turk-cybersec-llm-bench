@@ -1,0 +1,50 @@
+{
+  "alert_id": "evt-2026-0003",
+  "timestamp": "2026-05-27T03:47:18Z",
+  "source": "zeek+suricata",
+  "expected_verdict": "TP",
+  "expected_confidence": "HIGH",
+  "expected_techniques": ["T1071.001", "T1573", "T1090"],
+  "rule": {
+    "id": "ti-corr-0144",
+    "name": "Periodic outbound HTTPS to low-reputation host with jitter ~7%",
+    "level": 11,
+    "mitre": ["T1071.001"]
+  },
+  "agent": {
+    "id": "081",
+    "name": "WS-ENG-22",
+    "ip": "10.20.40.81",
+    "os": "Windows 11 23H2"
+  },
+  "process": {
+    "name": "svchost-update.exe",
+    "pid": 8842,
+    "cmdline": "C:\\Users\\Public\\Updates\\svchost-update.exe",
+    "parent_name": "explorer.exe",
+    "user": "DOMAIN\\m.kaya",
+    "signature_status": "Unsigned",
+    "first_seen_on_host": "2026-05-26T18:02:11Z"
+  },
+  "network": {
+    "connections": [
+      {"dst_ip": "194.58.112.71", "dst_port": 443, "bytes_out": 612, "bytes_in": 184, "ts": "2026-05-27T03:17:01Z"},
+      {"dst_ip": "194.58.112.71", "dst_port": 443, "bytes_out": 598, "bytes_in": 192, "ts": "2026-05-27T03:27:04Z"},
+      {"dst_ip": "194.58.112.71", "dst_port": 443, "bytes_out": 615, "bytes_in": 188, "ts": "2026-05-27T03:37:00Z"},
+      {"dst_ip": "194.58.112.71", "dst_port": 443, "bytes_out": 604, "bytes_in": 186, "ts": "2026-05-27T03:47:03Z"}
+    ],
+    "interval_seconds_mean": 601,
+    "interval_jitter_pct": 7.2,
+    "ja3": "a0e9f5d64349fb13191bc491f7a4f44a",
+    "ja3_known_label": "Cobalt Strike default profile"
+  },
+  "threat_intel": {
+    "194.58.112.71": {
+      "reputation": "malicious",
+      "categories": ["c2", "cobalt-strike"],
+      "first_reported": "2026-04-12T00:00:00Z",
+      "sources": ["AbuseIPDB", "ThreatFox"]
+    }
+  },
+  "raw_log": "Zeek conn.log ... orig_h=10.20.40.81 resp_h=194.58.112.71 resp_p=443 orig_bytes=612 resp_bytes=184 service=ssl"
+}

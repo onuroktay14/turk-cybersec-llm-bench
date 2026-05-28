@@ -1,0 +1,45 @@
+{
+  "alert_id": "evt-2026-0005",
+  "timestamp": "2026-05-27T22:14:03Z",
+  "source": "zeek-dns",
+  "expected_verdict": "SUSPICIOUS",
+  "expected_confidence": "MEDIUM",
+  "expected_techniques": ["T1048.003", "T1071.004"],
+  "rule": {
+    "id": "dns-anomaly-tunnel",
+    "name": "Sustained high-entropy DNS TXT lookups to single domain",
+    "level": 9,
+    "mitre": ["T1048.003"]
+  },
+  "agent": {
+    "id": "057",
+    "name": "WS-LEGAL-07",
+    "ip": "10.20.50.57",
+    "os": "Windows 10 22H2"
+  },
+  "dns": {
+    "queried_domain": "data.cloud-sync-api.net",
+    "query_type": "TXT",
+    "queries_last_hour": 8421,
+    "avg_subdomain_length": 47,
+    "avg_entropy_bits": 4.6,
+    "sample_subdomains": [
+      "aHR0cHM6Ly9zZWNyZXQuY29ycA.data.cloud-sync-api.net",
+      "bWVldGluZy1ub3Rlcy0yMDI2.data.cloud-sync-api.net",
+      "cGF5cm9sbF9xMV9maW5hbA.data.cloud-sync-api.net"
+    ]
+  },
+  "domain_intel": {
+    "data.cloud-sync-api.net": {
+      "registered": "2026-04-29T00:00:00Z",
+      "registrar": "Njalla",
+      "reputation": "unknown",
+      "passive_dns_first_seen_internal": "2026-05-27T18:42:17Z"
+    }
+  },
+  "process_correlation": {
+    "host_process_using_resolver": "OneDrive.exe",
+    "note": "Process is signed Microsoft but its parent invoked it from %TEMP%\\one-drv\\, not Program Files"
+  },
+  "raw_log": "Zeek dns.log ... query=aHR0cHM6Ly9zZWNyZXQuY29ycA.data.cloud-sync-api.net qtype=TXT"
+}

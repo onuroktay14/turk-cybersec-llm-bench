@@ -1,0 +1,50 @@
+# cybersec-llm-bench — model & runtime configuration
+#
+# Copy this file to `config.toml` and edit. The bench reads `config.toml`
+# by default.
+
+[ollama]
+# Where your Ollama instance lives.
+#   Local dev (default):     http://localhost:11434
+#   Docker host bridge:      http://172.17.0.1:11434
+#   Remote box:              http://<host-or-ip>:11434
+base_url = "http://localhost:11434"
+
+
+# ---------------------------------------------------------------------------
+# Titus v1.0 — public Turkish-first cyber LLM by Alican Kiraz
+# ---------------------------------------------------------------------------
+# Pulled directly from Hugging Face. Roughly 19.7 GB VRAM (Q4_0 GGUF).
+# Base model: Qwen3.6-35B-A3B (MoE: 35B total, ~3B active).
+
+[[models]]
+id           = "titus_q4_0"
+display_name = "Titus v1.0 Q4_0 GGUF"
+ollama_tag   = "hf.co/AlicanKiraz0/Titus-CybersecurityLLM-v1.0-Q4_0-GGUF:Q4_0"
+notes        = "Qwen3.6-35B-A3B + Turkish cyber LoRA"
+
+
+# ---------------------------------------------------------------------------
+# Seneca — custom/private cyber LLM (substitute or remove if unavailable)
+# ---------------------------------------------------------------------------
+# Seneca is not on the public Ollama registry. If you don't have your own
+# build, comment this block out or swap in another cyber LLM you can pull.
+
+[[models]]
+id           = "seneca"
+display_name = "Seneca q4_k_m"
+ollama_tag   = "seneca-cybersecurity:q4_k_m"
+notes        = "Custom Turkish cyber LLM — replace with your own GGUF if you don't have it"
+
+
+# ---------------------------------------------------------------------------
+# Optional: vanilla Qwen3.6-35B-A3B as a control
+# ---------------------------------------------------------------------------
+# Uncomment to isolate whether Titus's fine-tune actually adds value over
+# its base model. This is the single most useful diagnostic in the bench.
+#
+# [[models]]
+# id           = "qwen36_base"
+# display_name = "Qwen3.6-35B-A3B (control)"
+# ollama_tag   = "qwen3.6:35b-a3b"
+# notes        = "Vanilla base — measures Titus LoRA's actual contribution"

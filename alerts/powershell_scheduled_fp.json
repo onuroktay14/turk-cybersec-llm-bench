@@ -1,0 +1,43 @@
+{
+  "alert_id": "evt-2026-0002",
+  "timestamp": "2026-05-27T09:11:42Z",
+  "source": "wazuh",
+  "expected_verdict": "FP",
+  "expected_confidence": "HIGH",
+  "expected_techniques": ["T1059.001"],
+  "rule": {
+    "id": 87421,
+    "name": "PowerShell with encoded command",
+    "level": 10,
+    "mitre": ["T1059.001", "T1027"]
+  },
+  "agent": {
+    "id": "042",
+    "name": "DC-IT-ADMIN-02",
+    "ip": "10.20.10.12",
+    "os": "Windows Server 2022"
+  },
+  "process": {
+    "name": "powershell.exe",
+    "pid": 6712,
+    "cmdline": "powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand JABMAG8AZwBQAGEAdABoACAAPQAgACIAQwA6AFwAVABlAG0AcABcAEkAVAAtAFcAZQBlAGsAbAB5AC4AbABvAGcAIgA7ACAARwBlAHQALQBXAGkAbgBFAHYAZQBuAHQAIAAtAEwAbwBnAE4AYQBtAGUAIABTAGUAYwB1AHIAaQB0AHkA",
+    "decoded_cmdline_hint": "$LogPath = \"C:\\Temp\\IT-Weekly.log\"; Get-WinEvent -LogName Security",
+    "parent_name": "ScheduledTask.exe",
+    "parent_pid": 1240,
+    "user": "CORP\\svc_audit",
+    "signature_status": "Valid (Microsoft)"
+  },
+  "context": {
+    "scheduled_task": {
+      "name": "\\IT\\WeeklySecurityLogExport",
+      "created_by": "CORP\\admin.tperker",
+      "created_at": "2025-11-03T08:00:00Z",
+      "runs": "Weekly, Wednesday 09:00",
+      "approved_change_ticket": "CHG-2025-1142"
+    },
+    "asset_role": "domain_controller",
+    "user_history_30d": "svc_audit runs the same script every Wednesday at 09:00"
+  },
+  "network": { "recent_outbound": [] },
+  "raw_log": "EventID=4688 ProcessName=C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe ParentProcessName=C:\\Windows\\System32\\Tasks\\IT\\WeeklySecurityLogExport"
+}
